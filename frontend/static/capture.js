@@ -93,9 +93,13 @@ function uploadImage(data) {
     body: data
   })
     .then(result => {
+      result = document.getElementById('result');
+      result.innerHTML = "Submit successfully!";
       console.log('Success:', result);
     })
     .catch(error => {
+      result = document.getElementById('result');
+      result.innerHTML = "Submit failed: ${error}";
       console.error('Error:', error);
     });
 }
