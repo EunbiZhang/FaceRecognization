@@ -5,7 +5,6 @@ import requests
 
 BACKEND_HOST = os.getenv('BACKEND_HOST', 'http://localhost:8080')
 SERVER_PORT = os.getenv('SERVER_PORT', 8000)
-DBSERVICE_HOST = os.getenv('DBSERVICE_HOST', 'http://localhost:8090')
 
 # Create Flask app
 app = Flask(__name__, static_url_path='/', static_folder='static')
@@ -31,7 +30,7 @@ def validate():
 
 @app.route('/form', methods=['POST'])
 def form():
-    response = requests.post(DBSERVICE_HOST + '/form', data=request.data)
+    response = requests.post(BACKEND_HOST + '/form', data=request.data)
     return response.content
 
 if __name__ == '__main__':

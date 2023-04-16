@@ -25,6 +25,15 @@
 	<img id="photo" alt="The screen capture will appear in this box."> 
 	<button id="clearbutton" onclick="clearPhoto()">Clear photo</button> 
   </div>
+  <div>
+	<form id="User">
+	<label> Name: </label>
+	<input id="name" type="text" value="">
+	<label> Email: </label>
+	<input id="email" type="text" value="">
+	<button type="submit" onclick="submitForm(event); return false;">Submit</button>
+	</form>
+  </div>
   <div class="output">
         <button id="vaildatebutton" onclick="validate()">Vaildate photo</button>
         <div id="result"></div>
