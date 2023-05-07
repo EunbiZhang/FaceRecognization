@@ -24,6 +24,26 @@ public class DatabaseController {
 
     RestTemplate restTemplate = new RestTemplate();
 
+    @GetMapping("/backend-db-greeting")
+    public String greeting(@RequestParam(value = "name", defaultValue = "World") final String name) {
+        return "Hello World";
+    }
+
+    @RequestMapping(value = "/backend-db-test-post", method = RequestMethod.POST)
+    public String postTest(@RequestBody String data) throws JSONException {
+        JSONObject jsonObject= new JSONObject(data);
+        String name = jsonObject.getString("name");
+        String email = jsonObject.getString("email");
+
+        UUID uuid = UUID.randomUUID();
+        String userId = uuid.toString();
+
+        User user = new User(userId, name, email);
+
+        databaseImpl.saveUser(user);
+        return "Received post request";
+    }
+
     @Autowired
     DatabaseRepository databaseImpl;
 
