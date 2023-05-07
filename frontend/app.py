@@ -5,7 +5,7 @@ import requests
 
 BACKEND_HOST = os.getenv('BACKEND_HOST', 'http://localhost:8080')
 SERVER_PORT = os.getenv('SERVER_PORT', 8000)
-NOSQL_HOST = os.getenv('NOSQL_HOST', 'http://localhost:8080')
+NOSQL_HOST = os.getenv('NOSQL_HOST', 'http://localhost:9000')
 
 # Create Flask app
 app = Flask(__name__, static_url_path='/', static_folder='static')
@@ -36,7 +36,8 @@ def form():
 
 @app.route('/users', methods=['POST'])
 def users():
-    response = requests.post(NOSQL_HOST + '/users', data=request.data)
+    headers = {"Content-Type": "application/json"}
+    response = requests.post(NOSQL_HOST + '/users', data=request.data, headers=headers)
     return response.content
 
 if __name__ == '__main__':
